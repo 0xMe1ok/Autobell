@@ -1,0 +1,9 @@
+"wifi_ssid":yourwifinamehere
+"wifi_pass":yourwifipasshere
+"relaypin":12
+"i2cscl":23
+"i2csda":19
+"ntptimeoffset":7
+"ntphost":pool.ntp.org
+"ui_login":admin
+"ui_pass":pass
