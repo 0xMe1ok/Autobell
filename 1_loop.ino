@@ -6,7 +6,7 @@ void loop() {
     timeUntilBell = getTimeUntilBell();
 
     if (isTimeToBell()) {
-      enableBellPlanned();
+      enableBellForDuration();
       nextBellTime = getNextBellTime();
     }
     

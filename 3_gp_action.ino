@@ -81,12 +81,12 @@ void action() {
 
     // Включение звонка
     else if (ui.click("BTN_EnableBell")) {
-      enableBellPlanned();
+      enableBellForDuration();
     }
 
     // Обновление времени RTC-модуля
     else if (ui.click("BTN_RTC_Update")) {
-      updateRTCPlanned();
+      scheduledRTCUpdate();
     }
 
     // Обновление режима звонка
