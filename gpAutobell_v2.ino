@@ -1,25 +1,26 @@
-//                 *Autobell*
-//        Система автоматического звонка 
-//        с веб-интерфейсом на базе
-//        микроконтроллера ESP8266/ESP32
+/*
+    Скетч проекта "Autobell"
+    *страница проекта
+*/
 
-// Набор библиотек 
+// Библиотеки
 #include <ESP8266WiFi.h>
 #include <GyverPortal.h>
 #include <GyverDS3231.h>
 #include <GyverOS.h>
 #include <GyverNTP.h>
+#include <LittleFS.h>
+#include <GyverDBFile.h>
 #define OLED_SPI_SPEED 8000000ul
 #include <GyverOLED.h>
 
-#include <LittleFS.h>
-#include <GyverDBFile.h>
-
-// Набор дефайнов 
+// Пины подключения
 #define CLOCK_SDA 4
 #define CLOCK_SCL 5
 #define RELAY_PIN 14
+#define RESET_BUTTON_PIN 12
 
+// Служебный флаг - больше нет звонков на сегодня
 #define NOT_MORE_BELLING -1
 
 // Переменные для работы системы
@@ -45,16 +46,16 @@ enum BellModes {
 
 // Структура для данных типа Дата:Режим для БД
 struct DateMode {
-  String date; // Дата формата dd.mm
-  int mode;    // Режим звонка (см. enum BellModes)
+  String date;              // Дата формата dd.mm
+  int mode;                 // Режим звонка (см. enum BellModes)
 };
 
-bool isRinging = false; // Звонит/не звонит...
+bool isRinging = false;     // Звонит/не звонит...
 
-int bellmode = 0; // Режим звонка текущего дня
-int timeUntilBell = 0; // Время до следующего звонка, сек
-int nextBellTime = 0; // Время следующего звонка, секундный формат с начала суток
+int bellmode = 0;           // Режим звонка текущего дня
+int timeUntilBell = 0;      // Время до следующего звонка, сек
+int nextBellTime = 0;       // Время следующего звонка, секундный формат с начала суток
 
-int previousDay = -1;
+int currentDay = -1;        // Текущий день
 
 const int wifiConnectionAwait = 15000; // Ожидание WiFi, мс
