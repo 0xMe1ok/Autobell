@@ -1,19 +1,19 @@
-void enableBellPlanned() {
+void enableBellForDuration() {
   enableBell();
-  OS.attach(0, disableBell, settingsFile[SH("BELL_RingingTime")]); // Добавление выключения звонка по таймауту времени звонка из настроек
+  OS.attach(0, disableBellProcess, settingsFile[SH("BELL_RingingTime")]); // Добавление выключения звонка по таймауту времени звонка из настроек
 }
 
-void disableBellPlanned() {
+void disableBellProcess() {
   disableBell();
   OS.detach(0); // Удаление выключения звонка из очереди
 }
 
-void updateRTCPlanned() {
-  OS.attach(1, updateNTPPlanned, 100); // Добавление обновления времени в очередь     
+void scheduledRTCUpdate() {
+  OS.attach(1, RTCUpdateProcess, 100); // Добавление обновления времени в очередь     
 }
 
-void updateNTPPlanned() {
-  updateRTC();
+void RTCUpdateProcess() {
+  updateRTCFromNTP();
 
   nextBellTime = getNextBellTime();
   timeUntilBell = getTimeUntilBell();
