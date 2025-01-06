@@ -3,14 +3,17 @@ void loop() {
   ui.tick();
   
   if (ds.tick()) {
-    drawInfo();
+    timeUntilBell = getTimeUntilBell();
+
     if (isTimeToBell()) {
       enableBellPlanned();
       nextBellTime = getNextBellTime();
     }
-    timeUntilBell = getTimeUntilBell();
-    if (isNewDay(previousDay, ds.day())) {
+    
+    if (isNewDay(currentDay, ds.day())) {
       ESP.restart();
     }
+
+    drawInfo();
   }
 }
