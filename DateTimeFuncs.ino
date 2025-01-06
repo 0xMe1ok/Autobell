@@ -8,10 +8,10 @@ String daySecondsToHMS(int dayS) {
   int minutes = (dayS % 3600) / 60;
   int hours = dayS / 3600;
 
-  return addZero(hours) + ":" + addZero(minutes) + ":" + addZero(seconds);
+  return addZeroForTime(hours) + ":" + addZeroForTime(minutes) + ":" + addZeroForTime(seconds);
 }
 
-String addZero(int number) {
+String addZeroForTime(int number) {
   return number < 10 ? ("0" + String(number)) : (String(number));
 }
 
