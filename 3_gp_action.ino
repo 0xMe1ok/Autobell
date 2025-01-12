@@ -13,11 +13,21 @@ void action() {
       bellModesFile.update();
       settingsFile.update();
       bellDatesFile.update();
-      ESP.restart();
+      bellTimeFile.update();
+      
+      bellmode = getCurrentBellMode();
+      nextBellTime = getNextBellTime();
+      timeUntilBell = getTimeUntilBell();
     }
     else if (ui.click("BTN_SaveBellTime")) {
+      bellModesFile.update();
+      settingsFile.update();
+      bellDatesFile.update();
       bellTimeFile.update();
-      ESP.restart();
+      
+      bellmode = getCurrentBellMode();
+      nextBellTime = getNextBellTime();
+      timeUntilBell = getTimeUntilBell();
     }
     // Добавление/Удаление записи звонка в будний день
     else if (ui.click("BTN_Add_WeekdayBell")) {
