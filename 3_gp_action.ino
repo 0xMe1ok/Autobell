@@ -100,7 +100,7 @@ void action() {
     }
 
     // Обновление режима звонка
-    else if (ui.clickInt("slt_bellmode", bellmode)) {
+    else if (ui.clickInt("SEL_BellMode", bellmode)) {
       nextBellTime = getNextBellTime();
       timeUntilBell = getTimeUntilBell();
     }
