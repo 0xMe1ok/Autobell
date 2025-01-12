@@ -1,6 +1,7 @@
 void loop() {
   OS.tick();
   ui.tick();
+  checkResetButton();
   
   if (ds.tick()) {
     timeUntilBell = getTimeUntilBell();
