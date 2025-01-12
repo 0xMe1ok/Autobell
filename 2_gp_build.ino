@@ -9,7 +9,7 @@ void build() {
 
   if (ui.uri() == "/config") { // Конфиг
 
-  GP.NAV_TABS_LINKS("/config,/configNTP,/configUIAuth", "WiFi,NTP-сервер,Аутентификация", UI_COLOR);
+  GP.NAV_TABS_LINKS("/config,/configNTP,/configUIAuth,/configOTA", "WiFi,NTP-сервер,Аутентификация,OTA обновление");
 
   GP.PAGE_TITLE("Autobell - Конфиг WIFI");
  
@@ -25,7 +25,7 @@ void build() {
     
   } else if (ui.uri() == "/configNTP") { // Конфиг
 
-  GP.NAV_TABS_LINKS("/config,/configNTP,/configUIAuth", "WiFi,NTP-сервер,Аутентификация", UI_COLOR);
+  GP.NAV_TABS_LINKS("/config,/configNTP,/configUIAuth,/configOTA", "WiFi,NTP-сервер,Аутентификация,OTA обновление");
 
   GP.PAGE_TITLE("Autobell - Конфиг NTP");
 
@@ -41,16 +41,29 @@ void build() {
 
   } else if (ui.uri() == "/configUIAuth") { // Конфиг
 
-  GP.NAV_TABS_LINKS("/config,/configNTP,/configUIAuth", "WiFi,NTP-сервер,Аутентификация", UI_COLOR);
+  GP.NAV_TABS_LINKS("/config,/configNTP,/configUIAuth,/configOTA", "WiFi,NTP-сервер,Аутентификация,OTA обновление");
 
   GP.PAGE_TITLE("Autobell - Конфиг аутентификации");
 
-  GP.BLOCK_BEGIN(GP_TAB, "25%", "Настройка входа ⚙️", UI_COLOR);
+  GP.BLOCK_BEGIN(GP_TAB, "100%", "Настройка входа ⚙️", UI_COLOR);
     GP.LABEL("Логин: ");
     GP.TEXT("CFG/STR/UI_Login", "Логин", configFile["UI_Login"]);
     GP.BREAK(); 
     GP.LABEL("Пароль: ");
     GP.PASS("CFG/STR/UI_Pass", "Пароль", configFile["UI_Pass"]);
+  GP.BLOCK_END();
+
+  GP.BUTTON("BTN_SaveConfig", "Сохранить изменения");
+
+  } else if (ui.uri() == "/configOTA") { // Конфиг
+
+  GP.NAV_TABS_LINKS("/config,/configNTP,/configUIAuth,/configOTA", "WiFi,NTP-сервер,Аутентификация,OTA обновление");
+
+  GP.PAGE_TITLE("Autobell - OTA обновление");
+
+  GP.BLOCK_BEGIN(GP_TAB, "100%", "OTA обновление", UI_COLOR);
+    GP.OTA_FIRMWARE();
+    GP.OTA_FILESYSTEM();
   GP.BLOCK_END();
 
   GP.BUTTON("BTN_SaveConfig", "Сохранить изменения");
