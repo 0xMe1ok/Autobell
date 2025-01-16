@@ -1,11 +1,10 @@
 void checkResetButton() {
-    drawSomething("Процесс сброса, ждите...");
     while (digitalRead(RESET_BUTTON_PIN) == LOW) { // Кнопка нажата (если кнопка замыкает на GND)
-        drawSomething(String(millis()));
+    drawResetProcess();
         if (millis() - buttonPressStartTime >= kResetHoldDuration) {
             while (digitalRead(RESET_BUTTON_PIN) == LOW) 
             {
-              drawSomething("Отпустите кнопку для сброса...");
+              drawSomething("Отпустите кнопку...");
               delay(1000);
             }
             removeAllFiles(); // Выполняем сброс файлов

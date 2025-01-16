@@ -28,3 +28,20 @@ void drawInit() {
   oled.print("Включение...");
   oled.update();
 }
+
+void drawResetProcess() {
+  oled.clear();
+  oled.home();
+  oled.print("Продолжайте держать");
+  oled.setCursor(0, 1);
+  oled.print("кнопку, чтоб сбросить");
+  oled.setCursor(0, 2);
+  oled.print("устройство...");
+
+  oled.setCursor(0, 4);
+  oled.print("Прогресс:");
+  oled.fastLineV(0, 63, 53, 1);
+  oled.fastLineV(127, 63, 53, 1);
+  oled.rect(5, 63, map((millis() / 100), 0, 100, 5, 122), 53, 1);
+  oled.update();
+}
