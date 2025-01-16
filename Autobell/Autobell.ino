@@ -39,7 +39,7 @@ GyverDBFile bellDatesFile(&LittleFS, "/autob/belldates.bin");
 // Режим звонка
 enum BellModes {
   Weekend = 0,
-  Weekday = 1,
+  Workday = 1,
   Shortened = 2,
   Holiday = 3
 };

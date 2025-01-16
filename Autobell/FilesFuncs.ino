@@ -16,11 +16,11 @@ void initFiles() {
   settingsFile.init(SH("BELL_RingingTime"), 5000);
 
   // ЗВОНКИ - РЕЖИМ
-  bellModesFile.init(SH("D1"), (int) Weekday); // Понедельник
-  bellModesFile.init(SH("D2"), (int) Weekday); // Вторник
-  bellModesFile.init(SH("D3"), (int) Weekday); // Среда
-  bellModesFile.init(SH("D4"), (int) Weekday); // Четверг
-  bellModesFile.init(SH("D5"), (int) Weekday); // Пятница
+  bellModesFile.init(SH("D1"), (int) Workday); // Понедельник
+  bellModesFile.init(SH("D2"), (int) Workday); // Вторник
+  bellModesFile.init(SH("D3"), (int) Workday); // Среда
+  bellModesFile.init(SH("D4"), (int) Workday); // Четверг
+  bellModesFile.init(SH("D5"), (int) Workday); // Пятница
   bellModesFile.init(SH("D6"), (int) Weekend); // Суббота
   bellModesFile.init(SH("D7"), (int) Weekend); // Воскресенье
 
