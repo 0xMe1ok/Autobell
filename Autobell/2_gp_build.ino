@@ -9,7 +9,7 @@ void build() {
 
   if (ui.uri() == "/config") { // Конфиг
 
-  GP.NAV_TABS_LINKS("/config,/configNTP,/configUIAuth,/configOTA", "WiFi,NTP-сервер,Аутентификация,OTA обновление");
+  GP.NAV_TABS_LINKS("/config,/configNTP,/configUIAuth,/configOTA", "WiFi,NTP-сервер,Авторизация,OTA обновление");
 
   GP.PAGE_TITLE("Autobell - Конфиг WIFI");
  
@@ -25,7 +25,7 @@ void build() {
     
   } else if (ui.uri() == "/configNTP") { // Конфиг
 
-  GP.NAV_TABS_LINKS("/config,/configNTP,/configUIAuth,/configOTA", "WiFi,NTP-сервер,Аутентификация,OTA обновление");
+  GP.NAV_TABS_LINKS("/config,/configNTP,/configUIAuth,/configOTA", "WiFi,NTP-сервер,Авторизация,OTA обновление");
 
   GP.PAGE_TITLE("Autobell - Конфиг NTP");
 
@@ -57,7 +57,7 @@ void build() {
 
   } else if (ui.uri() == "/configOTA") { // Конфиг
 
-  GP.NAV_TABS_LINKS("/config,/configNTP,/configUIAuth,/configOTA", "WiFi,NTP-сервер,Аутентификация,OTA обновление");
+  GP.NAV_TABS_LINKS("/config,/configNTP,/configUIAuth,/configOTA", "WiFi,NTP-сервер,Авторизация,OTA обновление");
 
   GP.PAGE_TITLE("Autobell - OTA обновление");
 
@@ -77,37 +77,37 @@ void build() {
   GP.BLOCK_BEGIN(GP_TAB, "100%", "Выбор режима для дня недели", UI_COLOR);
     GP.LABEL("Понедельник: ");
     tempBM = bellModesFile[SH("D1")];
-    GP.SELECT("MOD/INT/D1", "Выходной,Будний,Сокращенный,Праздник", tempBM);
+    GP.SELECT("MOD/INT/D1", "Выходной,Рабочий,Сокращенный,Праздник", tempBM);
     GP.BREAK();
 
     GP.LABEL("Вторник: ");
     tempBM = bellModesFile[SH("D2")];
-    GP.SELECT("MOD/INT/D2", "Выходной,Будний,Сокращенный,Праздник", tempBM);
+    GP.SELECT("MOD/INT/D2", "Выходной,Рабочий,Сокращенный,Праздник", tempBM);
     GP.BREAK();
 
     GP.LABEL("Среда: ");
     tempBM = bellModesFile[SH("D3")];
-    GP.SELECT("MOD/INT/D3", "Выходной,Будний,Сокращенный,Праздник", tempBM);
+    GP.SELECT("MOD/INT/D3", "Выходной,Рабочий,Сокращенный,Праздник", tempBM);
     GP.BREAK();
 
     GP.LABEL("Четверг: ");
     tempBM = bellModesFile[SH("D4")];
-    GP.SELECT("MOD/INT/D4", "Выходной,Будний,Сокращенный,Праздник", tempBM);
+    GP.SELECT("MOD/INT/D4", "Выходной,Рабочий,Сокращенный,Праздник", tempBM);
     GP.BREAK();
 
     GP.LABEL("Пятница: ");
     tempBM = bellModesFile[SH("D5")];
-    GP.SELECT("MOD/INT/D5", "Выходной,Будний,Сокращенный,Праздник", tempBM);
+    GP.SELECT("MOD/INT/D5", "Выходной,Рабочий,Сокращенный,Праздник", tempBM);
     GP.BREAK();
 
     GP.LABEL("Суббота: ");
     tempBM = bellModesFile[SH("D6")];
-    GP.SELECT("MOD/INT/D6", "Выходной,Будний,Сокращенный,Праздник", tempBM);
+    GP.SELECT("MOD/INT/D6", "Выходной,Рабочий,Сокращенный,Праздник", tempBM);
     GP.BREAK();
 
     GP.LABEL("Воскресенье: ");
     tempBM = bellModesFile[SH("D7")];
-    GP.SELECT("MOD/INT/D7", "Выходной,Будний,Сокращенный,Праздник", tempBM);
+    GP.SELECT("MOD/INT/D7", "Выходной,Рабочий,Сокращенный,Праздник", tempBM);
   GP.BLOCK_END();
 
   GP.BUTTON("BTN_SaveSettings", "Сохранить изменения");
@@ -134,7 +134,7 @@ void build() {
 
         GP.DATE("DAT/DAT/Date_" + String(i), gpdat);
         GP.LABEL(" - ");
-        GP.SELECT("DAT/INT/Date_" + String(i), "Выходной,Будний,Сокращенный,Праздник", datemode.mode);
+        GP.SELECT("DAT/INT/Date_" + String(i), "Выходной,Рабочий,Сокращенный,Праздник", datemode.mode);
         GP.BREAK();
     }
     GP.BUTTON("BTN_Add_Date", "+");
@@ -158,11 +158,11 @@ void build() {
   } else if (ui.uri() == "/belltimeWeekdays") {
 
   GP.PAGE_TITLE("Autobell - Настройка времени звонков");
-  GP.NAV_TABS_LINKS("/belltimeWeekdays,/belltimeShort,/belltimeHolidays", "Будни,Сокращенные,Праздники");
+  GP.NAV_TABS_LINKS("/belltimeWeekdays,/belltimeShort,/belltimeHolidays", "Рабочие,Сокращенные,Праздники");
 
   const int weekdayBellCount = bellTimeFile["Weekday_BellCount"];
 
-  GP.BLOCK_BEGIN(GP_TAB, "100%", "Звонки буднего дня", UI_COLOR); 
+  GP.BLOCK_BEGIN(GP_TAB, "100%", "Звонки рабочего дня", UI_COLOR); 
     for (int i = 1; i <= weekdayBellCount; i++) {
       GPtime time;
       bellTimeFile["Weekday_" + String(i)].writeTo(time);
@@ -242,7 +242,7 @@ void build() {
       GP.BREAK();
 
       GP.LABEL("Режим звонка: ");
-      GP.SELECT("SEL_BellMode", "Выходной,Будний,Сокращенный,Праздник", bellmode);
+      GP.SELECT("SEL_BellMode", "Выходной,Рабочий,Сокращенный,Праздник", bellmode);
       GP.BREAK();
 
       GP.LABEL("Следующий звонок в:");
