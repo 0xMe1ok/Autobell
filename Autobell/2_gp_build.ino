@@ -235,7 +235,7 @@ void build() {
     GP.PAGE_TITLE("Autobell - Главная");
     GP.UPDATE("LBL_RTC_DateTime,LBL_RTC_DayOfWeek,LBL_BellStatus,LBL_NextBellTime,LBL_TimeUntilBell");
     
-    GP.BLOCK_BEGIN(GP_TAB, "100%", "Данные времени", UI_COLOR);
+    GP.BLOCK_BEGIN(GP_TAB, "100%", "Данные о звонке", UI_COLOR);
       GP.LABEL("Статус: ");
       String bellStatus = isRinging ? "Звонок активен 🔔" : "Звонок неактивен 🔕";
       GP.LABEL(bellStatus, "LBL_BellStatus");
@@ -264,7 +264,8 @@ void build() {
       GP.LABEL(getDayOfWeek(), "LBL_RTC_DayOfWeek");
       GP.BREAK();
       
-      GP.BUTTON("BTN_RTC_Update", "Обновить время");
+      GP.BUTTON("BTN_RTC_Update", "Обновить по NTP-серверу");
+      GP.BUTTON("BTN_RTC_Update_UI", "Обновить времени с устройства");
     GP.BLOCK_END();
   }
 

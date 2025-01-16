@@ -7,8 +7,8 @@ void initFiles() {
   configFile.init(SH("INIT"), "INIT");
   configFile.init(SH("WiFi_SSID"), "yourwifihere");
   configFile.init(SH("WiFi_PASS"), "yourpasshere");
-  configFile.init(SH("NTP_TimeOffset"), 1);
-  configFile.init(SH("NTP_Host"), "pool.ntp.org");
+  configFile.init(SH("NTP_TimeOffset"), 0);
+  configFile.init(SH("NTP_Host"), "ru.pool.ntp.org");
   configFile.init(SH("UI_Login"), "");
   configFile.init(SH("UI_Pass"), "");
 

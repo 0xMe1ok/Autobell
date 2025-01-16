@@ -7,7 +7,7 @@ void action() {
   if (ui.click()) {
     if (ui.click("BTN_SaveConfig")) {
       configFile.update();
-      ESP.restart();
+      ESP.reset();
     }
     else if (ui.click("BTN_SaveSettings")) {
       bellModesFile.update();
@@ -94,9 +94,14 @@ void action() {
       enableBellForDuration();
     }
 
-    // Обновление времени RTC-модуля
+    // Обновление времени RTC-модуля через NTP-сервер
     else if (ui.click("BTN_RTC_Update")) {
       scheduledRTCUpdate();
+    }
+
+    // Обновление времени RTC-модуля через данные от устройства
+    else if (ui.click("BTN_RTC_Update_UI")) {
+      updateRTCFromGP();
     }
 
     // Обновление режима звонка

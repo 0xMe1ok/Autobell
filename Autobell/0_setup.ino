@@ -8,10 +8,15 @@ void setup() {
   Wire.setClock(800000L);
   oled.init();
   drawInit();
-  if (!ds.begin()) ds.setBuildTime();
+  ds.begin();
 
   // Запуск LittleFS
   LittleFS.begin();
+
+  // Проверка на сброс
+  buttonPressStartTime = millis();
+  checkResetButton();
+  drawSomething("Подключение...");
 
   // Инициализация файлов БД различных настроек
   configFile.begin(); 
@@ -41,15 +46,23 @@ void setup() {
     delay(500);
     
     // Если время подключения превышено...
-    if (millis() > wifiConnectionAwait + preparationTime) {
+    if (millis() > kWifiConnectionAwait + preparationTime) {
       // то создаем точку доступа
       WiFi.mode(WIFI_AP);
       WiFi.softAP("Autobell");
-
       break;
     }
   }
-  //Serial.println(WiFi.localIP());
+
+  // Обновление времени RTC-модуля через NTP-сервер
+  if (WiFi.status() == WL_CONNECTED) {
+    // Инициализация NTP-сервера
+    NTP.begin();
+    NTP.setGMT(configFile[SH("NTP_TimeOffset")]);
+    NTP.setHost(configFile[SH("NTP_Host")]);
+    
+    updateRTCFromNTP();
+  }
   
   // Подключение конструктора и запуск сервера веб-интерфейса
   ui.attachBuild(build);
@@ -63,11 +76,4 @@ void setup() {
     
     ui.enableAuth(login, pass);
   }
-  
-  // Инициализация NTP-сервера
-  NTP.begin(configFile[SH("NTP_TimeOffset")]);
-  NTP.setHost(configFile[SH("NTP_Host")]);
-
-  // Обновление времени RTC-модуля через NTP-сервер
-  updateRTCFromNTP();
 }

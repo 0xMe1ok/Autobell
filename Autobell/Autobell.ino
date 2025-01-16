@@ -58,7 +58,7 @@ int nextBellTime = 0;       // Время следующего звонка, с�
 
 int currentDay = -1;        // Текущий день
 
-const long resetHoldDuration = 10000; // Время удержания кнопки в миллисекундах
+const long kResetHoldDuration = 10000; // Время удержания кнопки в миллисекундах
 unsigned long buttonPressStartTime = 0; // Время начала удержания кнопки
 
-const int wifiConnectionAwait = 15000; // Ожидание WiFi, мс
+const int kWifiConnectionAwait = 15000; // Ожидание WiFi, мс

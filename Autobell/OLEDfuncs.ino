@@ -15,6 +15,13 @@ void drawInfo() {
   oled.update();
 }
 
+void drawSomething(String message) {
+  oled.clear();
+  oled.home();
+  oled.print(message);
+  oled.update();
+}
+
 void drawInit() {
   oled.clear();
   oled.home();
