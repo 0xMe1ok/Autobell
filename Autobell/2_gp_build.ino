@@ -41,9 +41,9 @@ void build() {
 
   } else if (ui.uri() == "/configUIAuth") { // Конфиг
 
-  GP.NAV_TABS_LINKS("/config,/configNTP,/configUIAuth,/configOTA", "WiFi,NTP-сервер,Аутентификация,OTA обновление");
+  GP.NAV_TABS_LINKS("/config,/configNTP,/configUIAuth,/configOTA", "WiFi,NTP-сервер,Авторизация,OTA обновление");
 
-  GP.PAGE_TITLE("Autobell - Конфиг аутентификации");
+  GP.PAGE_TITLE("Autobell - Конфиг авторизации");
 
   GP.BLOCK_BEGIN(GP_TAB, "100%", "Настройка входа ⚙️", UI_COLOR);
     GP.LABEL("Логин: ");
