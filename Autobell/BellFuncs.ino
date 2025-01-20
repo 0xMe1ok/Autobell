@@ -30,7 +30,7 @@ int getNextBellTime() {
   if (bellmode == Weekend) {
     return NOT_MORE_BELLING;
   }
-  else if (bellmode == Weekday) {
+  else if (bellmode == Workday) {
     const int bellCount = bellTimeFile[SH("Weekday_BellCount")];
     for (int i = 1; i <= bellCount; i++) {
       GPtime gptime;
