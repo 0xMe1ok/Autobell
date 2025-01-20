@@ -36,6 +36,9 @@ GyverDBFile bellModesFile(&LittleFS, "/autob/bellmodes.bin");
 GyverDBFile bellTimeFile (&LittleFS, "/autob/belltime.bin"); 
 GyverDBFile bellDatesFile(&LittleFS, "/autob/belldates.bin");
 
+String uiLogin = "";
+String uiPass = "";
+
 // Режим звонка
 enum BellModes {
   Weekend = 0,

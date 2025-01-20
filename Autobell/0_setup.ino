@@ -37,6 +37,9 @@ void setup() {
   timeUntilBell = getTimeUntilBell();
   currentDay = ds.day();
 
+  uiLogin = configFile[SH("UI_Login")].toString();
+  uiPass = configFile[SH("UI_Pass")].toString();
+
   const int preparationTime = millis();
 
   // Подключение к WiFi
@@ -70,9 +73,9 @@ void setup() {
   ui.start("autobell");
 
   // Аутентификация в веб-интерфейсе
-  if (configFile[SH("UI_Login")].toString().length() > 0 && configFile[SH("UI_Pass")].toString().length() > 0) {
-    const char* login = configFile[SH("UI_Login")].toString().c_str();
-    const char* pass = configFile[SH("UI_Pass")].toString().c_str();
+  if (uiLogin.length() > 0 && uiPass.length() > 0) {
+    const char* login = uiLogin.c_str();
+    const char* pass = uiPass.c_str();
     
     ui.enableAuth(login, pass);
   }
