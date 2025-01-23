@@ -16,7 +16,7 @@ void setup() {
   // Проверка на сброс
   buttonPressStartTime = millis();
   checkResetButton();
-  drawSomething("Подключение...");
+  drawSomething("Включение...");
 
   // Инициализация файлов БД различных настроек
   configFile.begin(); 
@@ -43,22 +43,25 @@ void setup() {
   const int preparationTime = millis();
 
   // Подключение к WiFi
-  WiFi.mode(WIFI_STA);
-  WiFi.begin(configFile[SH("WiFi_SSID")], configFile[SH("WiFi_PASS")]);
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    
-    // Если время подключения превышено...
-    if (millis() > kWifiConnectionAwait + preparationTime) {
-      // то создаем точку доступа
-      WiFi.mode(WIFI_AP);
-      WiFi.softAP("Autobell");
-      break;
+  if (configFile[SH("WiFi_SSID")].toString().length() > 0 && configFile[SH("WiFi_PASS")].toString().length() > 0) {
+    WiFi.mode(WIFI_STA);
+    WiFi.begin(configFile[SH("WiFi_SSID")], configFile[SH("WiFi_PASS")]);
+    while (WiFi.status() != WL_CONNECTED) {
+      delay(500);
+      // Если время подключения превышено...
+      if (millis() > kWifiConnectionAwait + preparationTime) {
+        // то создаем точку доступа
+        wifiAP();
+        break;
+      }
     }
   }
-
+  else {
+    wifiAP();
+  }
+  
   // Обновление времени RTC-модуля через NTP-сервер
-  if (WiFi.status() == WL_CONNECTED) {
+  if (wifiConnected) {
     // Инициализация NTP-сервера
     NTP.begin();
     NTP.setGMT(configFile[SH("NTP_TimeOffset")]);
