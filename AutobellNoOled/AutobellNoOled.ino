@@ -16,10 +16,10 @@
 #include <GyverDBFile.h>
 
 // Пины подключения
-#define CLOCK_SDA 4
-#define CLOCK_SCL 5
-#define RELAY_PIN 14
-#define RESET_BUTTON_PIN 12
+#define CLOCK_SDA D5
+#define CLOCK_SCL D6
+#define RELAY_PIN D2
+#define RESET_BUTTON_PIN D1
 
 // Служебный флаг - больше нет звонков на сегодня
 #define NOT_MORE_BELLING -1
